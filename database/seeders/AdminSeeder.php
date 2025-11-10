@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin User',
             'email' => 'admin@shirecommerce.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'password' => \Illuminate\Support\Facades\Hash::make('ADMINPASS12'),
             'phone' => '+1234567890',
             'balance' => 10000.00,
             'is_admin' => true,

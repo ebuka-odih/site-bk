@@ -49,20 +49,54 @@ class SettingsController extends Controller
      */
     public function update(Request $request)
     {
+        $nullableKeys = [
+            'site_name',
+            'site_email',
+            'support_email',
+            'app_url',
+            'timezone',
+            'currency',
+            'security_max_login_attempts',
+            'security_lockout_time',
+            'security_session_timeout',
+            'security_two_factor_threshold',
+            'security_admin_approval_threshold',
+        ];
+
+        $sanitised = [];
+
+        foreach ($nullableKeys as $key) {
+            if (! $request->has($key)) {
+                continue;
+            }
+
+            $value = $request->input($key);
+
+            if (is_string($value)) {
+                $value = trim($value);
+            }
+
+            $sanitised[$key] = $value === '' ? null : $value;
+        }
+
+        if (! empty($sanitised)) {
+            $request->merge($sanitised);
+        }
+
         $validated = $request->validate([
-            'site_name' => ['required', 'string', 'max:255'],
-            'site_email' => ['required', 'email', 'max:255'],
+            'site_name' => ['nullable', 'string', 'max:255'],
+            'site_email' => ['nullable', 'email', 'max:255'],
             'support_email' => ['nullable', 'email', 'max:255'],
-            'app_url' => ['required', 'url', 'max:255'],
-            'timezone' => ['required', 'string', 'max:255'],
-            'currency' => ['required', 'string', 'max:10'],
+            'app_url' => ['nullable', 'url', 'max:255'],
+            'timezone' => ['nullable', 'string', 'max:255'],
+            'currency' => ['nullable', 'string', 'max:10'],
             'site_logo' => ['nullable', 'image', 'max:2048'],
             'remove_logo' => ['nullable', 'boolean'],
-            'security_max_login_attempts' => ['required', 'integer', 'min:1', 'max:20'],
-            'security_lockout_time' => ['required', 'integer', 'min:1', 'max:1440'],
-            'security_session_timeout' => ['required', 'integer', 'min:1', 'max:1440'],
-            'security_two_factor_threshold' => ['required', 'numeric', 'min:0'],
-            'security_admin_approval_threshold' => ['required', 'numeric', 'min:0'],
+            'security_max_login_attempts' => ['nullable', 'integer', 'min:1', 'max:20'],
+            'security_lockout_time' => ['nullable', 'integer', 'min:1', 'max:1440'],
+            'security_session_timeout' => ['nullable', 'integer', 'min:1', 'max:1440'],
+            'security_two_factor_threshold' => ['nullable', 'numeric', 'min:0'],
+            'security_admin_approval_threshold' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         $logoPath = SettingsManager::get('site_logo_path');
@@ -71,17 +105,27 @@ class SettingsController extends Controller
 
         try {
             $payload = [
-                'site_name' => $validated['site_name'],
-                'site_email' => $validated['site_email'],
+                'site_name' => $validated['site_name'] ?? null,
+                'site_email' => $validated['site_email'] ?? null,
                 'support_email' => $validated['support_email'] ?? null,
-                'app_url' => $validated['app_url'],
-                'timezone' => $validated['timezone'],
-                'currency' => $validated['currency'],
-                'security_max_login_attempts' => (int) $validated['security_max_login_attempts'],
-                'security_lockout_time' => (int) $validated['security_lockout_time'],
-                'security_session_timeout' => (int) $validated['security_session_timeout'],
-                'security_two_factor_threshold' => (float) $validated['security_two_factor_threshold'],
-                'security_admin_approval_threshold' => (float) $validated['security_admin_approval_threshold'],
+                'app_url' => $validated['app_url'] ?? null,
+                'timezone' => $validated['timezone'] ?? null,
+                'currency' => $validated['currency'] ?? null,
+                'security_max_login_attempts' => array_key_exists('security_max_login_attempts', $validated)
+                    ? (int) $validated['security_max_login_attempts']
+                    : null,
+                'security_lockout_time' => array_key_exists('security_lockout_time', $validated)
+                    ? (int) $validated['security_lockout_time']
+                    : null,
+                'security_session_timeout' => array_key_exists('security_session_timeout', $validated)
+                    ? (int) $validated['security_session_timeout']
+                    : null,
+                'security_two_factor_threshold' => array_key_exists('security_two_factor_threshold', $validated)
+                    ? (float) $validated['security_two_factor_threshold']
+                    : null,
+                'security_admin_approval_threshold' => array_key_exists('security_admin_approval_threshold', $validated)
+                    ? (float) $validated['security_admin_approval_threshold']
+                    : null,
             ];
 
             if ($request->boolean('remove_logo')) {
@@ -114,10 +158,10 @@ class SettingsController extends Controller
         }
 
         config([
-            'app.name' => $payload['site_name'],
-            'app.url' => $payload['app_url'],
-            'app.timezone' => $payload['timezone'],
-            'mail.from.address' => $payload['site_email'],
+            'app.name' => $payload['site_name'] ?? config('app.name'),
+            'app.url' => $payload['app_url'] ?? config('app.url'),
+            'app.timezone' => $payload['timezone'] ?? config('app.timezone'),
+            'mail.from.address' => $payload['site_email'] ?? config('mail.from.address'),
         ]);
 
         AuditLog::logEvent('system.settings_updated', [

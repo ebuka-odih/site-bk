@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import { Button } from '@/Components/ui/button';
+import { Input } from '@/Components/ui/input';
 import { Head, router, useForm } from '@inertiajs/react';
 import { Database, Download, Info, Trash2, X } from 'lucide-react';
 import { PageProps } from '@/types';
@@ -30,31 +31,60 @@ type SettingsPayload = {
 
 type Props = PageProps & { settings: SettingsPayload };
 
+type SettingsFormData = {
+    site_name: string;
+    site_email: string;
+    support_email: string;
+    app_url: string;
+    timezone: string;
+    currency: string;
+    site_logo: File | null;
+    remove_logo: boolean;
+    security_max_login_attempts: string;
+    security_lockout_time: string;
+    security_session_timeout: string;
+    security_two_factor_threshold: string;
+    security_admin_approval_threshold: string;
+};
+
 export default function Index({ settings }: Props) {
     const initialValues = useMemo(
-        () => ({
+        () =>
+            ({
             site_name: settings.site.name ?? '',
             site_email: settings.site.email ?? '',
             support_email: settings.site.support_email ?? '',
             app_url: settings.site.url ?? '',
             timezone: settings.site.timezone ?? '',
             currency: settings.site.currency ?? '',
-            site_logo: null as File | null,
+                site_logo: null,
             remove_logo: false,
-            security_max_login_attempts: Number(settings.security.max_login_attempts ?? 5),
-            security_lockout_time: Number(settings.security.lockout_time ?? 30),
-            security_session_timeout: Number(settings.security.session_timeout ?? 30),
-            security_two_factor_threshold: Number(settings.security.two_factor_threshold ?? 100000),
-            security_admin_approval_threshold: Number(settings.security.admin_approval_threshold ?? 1000000),
-        }),
+                security_max_login_attempts: settings.security.max_login_attempts?.toString() ?? '',
+                security_lockout_time: settings.security.lockout_time?.toString() ?? '',
+                security_session_timeout: settings.security.session_timeout?.toString() ?? '',
+                security_two_factor_threshold: settings.security.two_factor_threshold?.toString() ?? '',
+                security_admin_approval_threshold: settings.security.admin_approval_threshold?.toString() ?? '',
+            }) satisfies SettingsFormData,
         [settings]
     );
 
-    const form = useForm(initialValues);
+    const form = useForm<SettingsFormData>(initialValues);
     const { data, setData, errors, processing } = form;
+
+    useEffect(() => {
+        setData(() => ({
+            ...initialValues,
+        }));
+    }, [initialValues, setData]);
 
     const [logoPreview, setLogoPreview] = useState<string | null>(settings.branding.logo_url ?? null);
     const [logoObjectUrl, setLogoObjectUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!data.site_logo) {
+            setLogoPreview(settings.branding.logo_url ?? null);
+        }
+    }, [settings.branding.logo_url, data.site_logo]);
 
     useEffect(() => {
         return () => {
@@ -110,6 +140,32 @@ export default function Index({ settings }: Props) {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        form.transform((formData) => ({
+            ...formData,
+            site_name: formData.site_name.trim() === '' ? null : formData.site_name.trim(),
+            site_email: formData.site_email.trim() === '' ? null : formData.site_email.trim(),
+            support_email: formData.support_email.trim() === '' ? null : formData.support_email.trim(),
+            app_url: formData.app_url.trim() === '' ? null : formData.app_url.trim(),
+            timezone: formData.timezone.trim() === '' ? null : formData.timezone.trim(),
+            currency: formData.currency.trim() === '' ? null : formData.currency.trim(),
+            security_max_login_attempts:
+                formData.security_max_login_attempts.trim() === ''
+                    ? null
+                    : formData.security_max_login_attempts.trim(),
+            security_lockout_time:
+                formData.security_lockout_time.trim() === '' ? null : formData.security_lockout_time.trim(),
+            security_session_timeout:
+                formData.security_session_timeout.trim() === '' ? null : formData.security_session_timeout.trim(),
+            security_two_factor_threshold:
+                formData.security_two_factor_threshold.trim() === ''
+                    ? null
+                    : formData.security_two_factor_threshold.trim(),
+            security_admin_approval_threshold:
+                formData.security_admin_approval_threshold.trim() === ''
+                    ? null
+                    : formData.security_admin_approval_threshold.trim(),
+        }));
+
         form.put('/admin/settings', {
             forceFormData: true,
             preserveScroll: true,
@@ -119,6 +175,9 @@ export default function Index({ settings }: Props) {
                 if (!data.site_logo) {
                     setLogoPreview(settings.branding.logo_url ?? null);
                 }
+            },
+            onFinish: () => {
+                form.transform((payload) => payload);
             },
         });
     };
@@ -147,92 +206,91 @@ export default function Index({ settings }: Props) {
                                     <label htmlFor="site_name" className="block text-sm font-medium text-slate-300">
                                         Site Name
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="site_name"
-                                        type="text"
                                         value={data.site_name}
                                         onChange={(e) => setData('site_name', e.target.value)}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
                                         placeholder="Banko"
-                                        required
                                     />
-                                    {errors.site_name && <p className="mt-2 text-sm text-red-400">{errors.site_name}</p>}
+                                        {errors.site_name && <p className="text-sm text-red-400">{errors.site_name}</p>}
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="site_email" className="block text-sm font-medium text-slate-300">
                                         Primary Email
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="site_email"
                                         type="email"
                                         value={data.site_email}
                                         onChange={(e) => setData('site_email', e.target.value)}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
                                         placeholder="support@banko.test"
-                                        required
                                     />
-                                    {errors.site_email && <p className="mt-2 text-sm text-red-400">{errors.site_email}</p>}
+                                        {errors.site_email && <p className="text-sm text-red-400">{errors.site_email}</p>}
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="support_email" className="block text-sm font-medium text-slate-300">
                                         Support Email
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="support_email"
                                         type="email"
-                                        value={data.support_email ?? ''}
+                                            value={data.support_email}
                                         onChange={(e) => setData('support_email', e.target.value)}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
                                         placeholder="help@banko.test"
                                     />
                                     {errors.support_email && (
-                                        <p className="mt-2 text-sm text-red-400">{errors.support_email}</p>
+                                            <p className="text-sm text-red-400">{errors.support_email}</p>
                                     )}
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="app_url" className="block text-sm font-medium text-slate-300">
                                         Application URL
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="app_url"
                                         type="url"
                                         value={data.app_url}
                                         onChange={(e) => setData('app_url', e.target.value)}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
                                         placeholder="https://banko.test"
-                                        required
                                     />
-                                    {errors.app_url && <p className="mt-2 text-sm text-red-400">{errors.app_url}</p>}
+                                        {errors.app_url && <p className="text-sm text-red-400">{errors.app_url}</p>}
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="timezone" className="block text-sm font-medium text-slate-300">
                                         Timezone
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="timezone"
-                                        type="text"
                                         value={data.timezone}
                                         onChange={(e) => setData('timezone', e.target.value)}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
                                         placeholder="UTC"
-                                        required
                                     />
-                                    {errors.timezone && <p className="mt-2 text-sm text-red-400">{errors.timezone}</p>}
+                                        {errors.timezone && <p className="text-sm text-red-400">{errors.timezone}</p>}
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="currency" className="block text-sm font-medium text-slate-300">
                                         Currency
                                     </label>
-                                    <input
+                                    <div className="mt-2 space-y-2">
+                                        <Input
                                         id="currency"
-                                        type="text"
                                         value={data.currency}
                                         onChange={(e) => setData('currency', e.target.value.toUpperCase())}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500 uppercase"
                                         placeholder="NGN"
-                                        required
+                                            className="uppercase"
                                     />
-                                    {errors.currency && <p className="mt-2 text-sm text-red-400">{errors.currency}</p>}
+                                        {errors.currency && <p className="text-sm text-red-400">{errors.currency}</p>}
+                                    </div>
                                 </div>
                             </div>
                         </CardContent>
@@ -285,115 +343,7 @@ export default function Index({ settings }: Props) {
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-slate-900 border-slate-800">
-                        <CardHeader>
-                            <CardTitle className="text-slate-50">Security Controls</CardTitle>
-                            <CardDescription className="text-slate-400">
-                                Configure access policies and transaction safeguards.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="security_max_login_attempts" className="block text-sm font-medium text-slate-300">
-                                        Max Login Attempts
-                                    </label>
-                                    <input
-                                        id="security_max_login_attempts"
-                                        type="number"
-                                        min={1}
-                                        max={20}
-                                        value={data.security_max_login_attempts}
-                                        onChange={(e) => setData('security_max_login_attempts', Number(e.target.value))}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 focus:border-emerald-500 focus:ring-emerald-500"
-                                        required
-                                    />
-                                    {errors.security_max_login_attempts && (
-                                        <p className="mt-2 text-sm text-red-400">{errors.security_max_login_attempts}</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label htmlFor="security_lockout_time" className="block text-sm font-medium text-slate-300">
-                                        Lockout Time (minutes)
-                                    </label>
-                                    <input
-                                        id="security_lockout_time"
-                                        type="number"
-                                        min={1}
-                                        max={1440}
-                                        value={data.security_lockout_time}
-                                        onChange={(e) => setData('security_lockout_time', Number(e.target.value))}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 focus:border-emerald-500 focus:ring-emerald-500"
-                                        required
-                                    />
-                                    {errors.security_lockout_time && (
-                                        <p className="mt-2 text-sm text-red-400">{errors.security_lockout_time}</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label htmlFor="security_session_timeout" className="block text-sm font-medium text-slate-300">
-                                        Session Timeout (minutes)
-                                    </label>
-                                    <input
-                                        id="security_session_timeout"
-                                        type="number"
-                                        min={1}
-                                        max={1440}
-                                        value={data.security_session_timeout}
-                                        onChange={(e) => setData('security_session_timeout', Number(e.target.value))}
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 focus:border-emerald-500 focus:ring-emerald-500"
-                                        required
-                                    />
-                                    {errors.security_session_timeout && (
-                                        <p className="mt-2 text-sm text-red-400">{errors.security_session_timeout}</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label htmlFor="security_two_factor_threshold" className="block text-sm font-medium text-slate-300">
-                                        2FA Threshold (minor currency units)
-                                    </label>
-                                    <input
-                                        id="security_two_factor_threshold"
-                                        type="number"
-                                        min={0}
-                                        value={data.security_two_factor_threshold}
-                                        onChange={(e) =>
-                                            setData('security_two_factor_threshold', Number(e.target.value))
-                                        }
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 focus:border-emerald-500 focus:ring-emerald-500"
-                                        required
-                                    />
-                                    {errors.security_two_factor_threshold && (
-                                        <p className="mt-2 text-sm text-red-400">{errors.security_two_factor_threshold}</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="security_admin_approval_threshold"
-                                        className="block text-sm font-medium text-slate-300"
-                                    >
-                                        Admin Approval Threshold (minor currency units)
-                                    </label>
-                                    <input
-                                        id="security_admin_approval_threshold"
-                                        type="number"
-                                        min={0}
-                                        value={data.security_admin_approval_threshold}
-                                        onChange={(e) =>
-                                            setData('security_admin_approval_threshold', Number(e.target.value))
-                                        }
-                                        className="mt-2 block w-full rounded-md border border-slate-700 bg-slate-950 text-slate-50 focus:border-emerald-500 focus:ring-emerald-500"
-                                        required
-                                    />
-                                    {errors.security_admin_approval_threshold && (
-                                        <p className="mt-2 text-sm text-red-400">
-                                            {errors.security_admin_approval_threshold}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                        </CardContent>
-                        <CardFooter className="flex justify-end">
+                    <div className="flex justify-end">
                             <Button
                                 type="submit"
                                 disabled={processing}
@@ -401,8 +351,7 @@ export default function Index({ settings }: Props) {
                             >
                                 {processing ? 'Saving...' : 'Save Changes'}
                             </Button>
-                        </CardFooter>
-                    </Card>
+                    </div>
                 </form>
 
                 <Card className="bg-slate-900 border-slate-800">

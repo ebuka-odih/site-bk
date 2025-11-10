@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
     {
         \App\Models\User::create([
             'name' => 'Admin User',
-            'email' => 'admin@banko.com',
+            'email' => 'admin@shirecommerce.com',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'phone' => '+1234567890',
             'balance' => 10000.00,

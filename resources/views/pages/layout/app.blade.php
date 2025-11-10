@@ -22,6 +22,22 @@
     <link rel="stylesheet" href="css/plugins/magnific-popup.css" type="text/css" media="all">
     <!-- plax css -->
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <style>
+        .mil-top-panel .mil-top-menu > ul > li > a {
+            color: #1c1c1c;
+        }
+        .mil-top-panel .mil-top-menu > ul > li.mil-active > a,
+        .mil-top-panel .mil-top-menu > ul > li:hover > a {
+            color: #03a6a6;
+        }
+        .mil-top-panel .mil-top-menu > ul > li.mil-has-children::after {
+            border-color: #1c1c1c;
+        }
+        .mil-top-panel .mil-top-menu > ul > li.mil-has-children:hover::after,
+        .mil-top-panel .mil-top-menu > ul > li.mil-has-children.mil-active::after {
+            border-color: #03a6a6;
+        }
+    </style>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -54,54 +70,42 @@
         <!-- top panel end -->
         <div class="mil-top-panel mil-dark-2">
             <div class="container">
-                <a href="index.html" class="mil-logo">
+                <a href="{{ url('/') }}" class="mil-logo">
                     <img src="img/logo-color-soft.png" alt="Plax" width="83" height="32">
                 </a>
                 <nav class="mil-top-menu">
                     <ul>
-                        <li class="mil-has-children mil-active">
-                            <a href="#.">Home</a>
-                            <ul>
-                                <li><a href="index.html">Type 1</a></li>
-                                <li><a href="home-2.html">Type 2</a></li>
-                                <li><a href="home-3.html">Type 3</a></li>
-                                <li><a href="home-4.html">Type 4</a></li>
-                                <li><a href="home-5.html">Type 5</a></li>
-                                <li><a href="home-4.html">Type 4</a></li>
-                                <li><a href="home-5.html">Type 5</a></li>
-                                <li><a href="home-6.html">Type 6</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li>
-                            <a href="services.html">Services</a>
+                        <li class="mil-active">
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="mil-has-children">
-                            <a href="#.">Blog</a>
+                            <a href="#.">Personal Banking</a>
                             <ul>
-                                <li><a href="blog.html">Blog list</a></li>
-                                <li><a href="publication.html">Blog details</a></li>
+                                <li><a href="services.html">Banking Services</a></li>
+                                <li><a href="register.html">Open an Account</a></li>
+                                <li><a href="contact.html">Customer Support</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
+                        <li class="mil-has-children">
+                            <a href="#.">Corporate Banking</a>
+                            <ul>
+                                <li><a href="career.html">Business Solutions</a></li>
+                                <li><a href="career-details.html">Commercial Lending</a></li>
+                                <li><a href="price.html">Treasury Services</a></li>
+                            </ul>
                         </li>
                         <li class="mil-has-children">
-                            <a href="#.">Pages</a>
+                            <a href="#.">Help &amp; Info</a>
                             <ul>
-                                <li><a href="career.html">Career</a></li>
-                                <li><a href="career-details.html">Career details</a></li>
-                                <li><a href="price.html">Pricing</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="coming-soon.html">Coming soon</a></li>
+                                <li><a href="{{ url('/about') }}">About</a></li>
+                                <li><a href="support.html">Support</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
                 <div class="mil-menu-buttons">
-                    <a href="register.html" class="mil-btn mil-sm">Log in</a>
+                    <a href="register.html" class="mil-btn mil-sm">Client Login</a>
                     <div class="mil-menu-btn">
                         <span></span>
                     </div>

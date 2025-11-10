@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TransactionController;
 
 Route::view('/', 'pages.index')->name('home');
+Route::view('/about', 'pages.about')->name('about');
 
 // Admin Authentication Routes (separate from regular user auth)
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');

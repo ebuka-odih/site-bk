@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import { Button } from '@/Components/ui/button';
@@ -40,42 +40,42 @@ type SettingsFormData = {
     currency: string;
     site_logo: File | null;
     remove_logo: boolean;
-    security_max_login_attempts: string;
-    security_lockout_time: string;
-    security_session_timeout: string;
-    security_two_factor_threshold: string;
-    security_admin_approval_threshold: string;
 };
 
 export default function Index({ settings }: Props) {
-    const initialValues = useMemo(
-        () =>
-            ({
+    const form = useForm<SettingsFormData>({
+        site_name: settings.site.name ?? '',
+        site_email: settings.site.email ?? '',
+        support_email: settings.site.support_email ?? '',
+        app_url: settings.site.url ?? '',
+        timezone: settings.site.timezone ?? '',
+        currency: settings.site.currency ?? '',
+        site_logo: null,
+        remove_logo: false,
+    });
+    const { data, setData, errors, processing } = form;
+
+    useEffect(() => {
+        setData((current) => ({
+            ...current,
             site_name: settings.site.name ?? '',
             site_email: settings.site.email ?? '',
             support_email: settings.site.support_email ?? '',
             app_url: settings.site.url ?? '',
             timezone: settings.site.timezone ?? '',
             currency: settings.site.currency ?? '',
-                site_logo: null,
+            site_logo: null,
             remove_logo: false,
-                security_max_login_attempts: settings.security.max_login_attempts?.toString() ?? '',
-                security_lockout_time: settings.security.lockout_time?.toString() ?? '',
-                security_session_timeout: settings.security.session_timeout?.toString() ?? '',
-                security_two_factor_threshold: settings.security.two_factor_threshold?.toString() ?? '',
-                security_admin_approval_threshold: settings.security.admin_approval_threshold?.toString() ?? '',
-            }) satisfies SettingsFormData,
-        [settings]
-    );
-
-    const form = useForm<SettingsFormData>(initialValues);
-    const { data, setData, errors, processing } = form;
-
-    useEffect(() => {
-        setData(() => ({
-            ...initialValues,
         }));
-    }, [initialValues, setData]);
+    }, [
+        setData,
+        settings.site.currency,
+        settings.site.email,
+        settings.site.name,
+        settings.site.support_email,
+        settings.site.timezone,
+        settings.site.url,
+    ]);
 
     const [logoPreview, setLogoPreview] = useState<string | null>(settings.branding.logo_url ?? null);
     const [logoObjectUrl, setLogoObjectUrl] = useState<string | null>(null);
@@ -148,22 +148,6 @@ export default function Index({ settings }: Props) {
             app_url: formData.app_url.trim() === '' ? null : formData.app_url.trim(),
             timezone: formData.timezone.trim() === '' ? null : formData.timezone.trim(),
             currency: formData.currency.trim() === '' ? null : formData.currency.trim(),
-            security_max_login_attempts:
-                formData.security_max_login_attempts.trim() === ''
-                    ? null
-                    : formData.security_max_login_attempts.trim(),
-            security_lockout_time:
-                formData.security_lockout_time.trim() === '' ? null : formData.security_lockout_time.trim(),
-            security_session_timeout:
-                formData.security_session_timeout.trim() === '' ? null : formData.security_session_timeout.trim(),
-            security_two_factor_threshold:
-                formData.security_two_factor_threshold.trim() === ''
-                    ? null
-                    : formData.security_two_factor_threshold.trim(),
-            security_admin_approval_threshold:
-                formData.security_admin_approval_threshold.trim() === ''
-                    ? null
-                    : formData.security_admin_approval_threshold.trim(),
         }));
 
         form.put('/admin/settings', {

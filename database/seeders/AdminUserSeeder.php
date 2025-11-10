@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,7 +31,6 @@ class AdminUserSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'pass_preview' => 'admin123',
             'remember_token' => Str::random(10),
-            'account_number' => '10' . str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT),
             'account_type' => 'savings',
             'phone' => '1234567890',
             'status' => 'active',
@@ -38,9 +38,21 @@ class AdminUserSeeder extends Seeder
             'balance' => 1000000, // 10,000.00 in kobo
         ]);
 
+        $defaultCurrency = config('banking.supported_currencies')[0] ?? 'USD';
+
+        $wallet = Wallet::create([
+            'user_id' => $admin->id,
+            'account_number' => Wallet::generateAccountNumber(),
+            'balance' => $admin->balance,
+            'ledger_balance' => $admin->balance,
+            'currency' => $defaultCurrency,
+            'status' => 'active',
+        ]);
+
         $this->command->info('Admin user created successfully!');
         $this->command->info('Email: admin@banko.com');
         $this->command->info('Password: admin123');
+        $this->command->info('Account Number: ' . $wallet->account_number);
         $this->command->info('Login URL: ' . url('/login'));
     }
 }

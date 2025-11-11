@@ -169,7 +169,7 @@ class SettingsController extends Controller
             'changed' => array_keys($payload),
         ]);
 
-        return redirect()->route('admin.settings.index')->with('success', 'Settings updated successfully.');
+        return redirect()->route('admin.settings')->with('success', 'Settings updated successfully.');
     }
 
     /**

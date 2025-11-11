@@ -12,6 +12,12 @@ use App\Http\Controllers\Admin\TransactionController;
 Route::view('/', 'pages.index')->name('home');
 Route::view('/about', 'pages.about')->name('about');
 
+Route::prefix('personal')->name('personal.')->group(function () {
+    Route::view('/banking-services', 'pages.personal.banking-services')->name('banking-services');
+    Route::view('/open-account', 'pages.personal.open-account')->name('open-account');
+    Route::view('/customer-support', 'pages.personal.customer-support')->name('customer-support');
+});
+
 // Admin Authentication Routes (separate from regular user auth)
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminLoginController::class, 'login']);

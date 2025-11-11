@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from nestopro.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 11:02:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NESTOPRO INTERNATIONAL BANK</title>
+    <!-- Favicons Icons -->
+    <meta name="description" content="NESTOPRO INTERNATIONAL BANK" />
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap"
+        rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
+        <link rel="stylesheet" href="assets/vendors/animate/custom-animate.css" />
+        <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/vendors/bxslider/jquery.bxslider.css" />
+        <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+        <link rel="stylesheet" href="assets/vendors/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" href="assets/vendors/nice-select/nice-select.css" />
+        <link rel="stylesheet" href="assets/vendors/odometer/odometer.min.css" />
+        <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.carousel.min.css" />
+        <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.theme.default.min.css" />
+        <link rel="stylesheet" href="assets/vendors/swiper/swiper.min.css" />
+        <link rel="stylesheet" href="assets/vendors/vegas/vegas.min.css" />
+        <link rel="stylesheet" href="assets/vendors/thm-icons/style.css">
+        <link rel="stylesheet" href="assets/vendors/language-switcher/polyglot-language-switcher.css">
+        <link rel="stylesheet" href="assets/vendors/aos/aos.css" />
+
+        <!-- Module css -->
+        <link rel="stylesheet" href="assets/css/module-css/01-header-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/02-banner-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/03-about-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/04-fact-counter-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/05-testimonial-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/06-partner-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/07-footer-section.css">
+        <link rel="stylesheet" href="assets/css/module-css/08-blog-section.css">
+       <link rel="stylesheet" href="assets/css/module-css/09-breadcrumb-section.css">
+
+        <!-- Template styles -->
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="assets/css/color-2.css">
+        <link rel="stylesheet" href="assets/css/responsive.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+
+element.style {
+}
+.handle-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--thm-base);
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    z-index: 9999999;
+}
+    </style>
+
+    <style>
+        li{
+            padding: 5px;
+            font-size: 17px;
+        }
+        i {
+            color: #0dcaf0;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Start preloader -->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div class="preloader-close">x</div>
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <span data-text-preloader="n" class="letters-loading">
+                            N
+                        </span>
+                        <span data-text-preloader="e" class="letters-loading">
+                            E
+                        </span>
+                        <span data-text-preloader="s" class="letters-loading">
+                            S
+                        </span>
+                        <span data-text-preloader="t" class="letters-loading">
+                            T
+                        </span>
+                        <span data-text-preloader="o" class="letters-loading">
+                            O
+                        </span>
+                        <span data-text-preloader="p" class="letters-loading">
+                            P
+                        </span>
+                        <span data-text-preloader="r" class="letters-loading">
+                            R
+                        </span>
+                        <span data-text-preloader="o" class="letters-loading">
+                            O
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End preloader -->
+
+
+    <div class="page-wrapper">
+        <header class="main-header main-header-style3">
+
+            <!--Start Main Header Style3 Top-->
+            <div class="main-header-style3__top">
+                <div class="auto-container">
+                    <div class="outer-box">
+
+                        <!--Start Main Header Style3 Top Left-->
+                        <div class="main-header-style3__top-left">
+                            <div class="header-menu-style1">
+                                <ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End Main Header Style3 Top Left-->
+
+                        <!--Start Main Header Style3 Top Right-->
+                        <div class="main-header-style3__top-right">
+                            <div class="header-contact-info-style1">
+                                <ul>
+                                    <li><span class="icon-map"></span>
+                                     25 Kingsway Street,
+                                      Canary Wharf, London,
+                                      E14 5HP,
+                                      United Kingdom.
+                                    </li>
+                                    <li><span class="icon-clock"></span> 9am to 5pm, Sun Holiday</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End Main Header Style3 Top Right-->
+
+                    </div>
+                </div>
+            </div>
+            <!--End Main Header Style3 Top-->
+
+            <nav class="main-menu main-menu-style3">
+                <div class="main-menu__wrapper clearfix">
+                    <div class="container">
+                        <div class="main-menu__wrapper-inner">
+
+                            <div class="main-menu-style3-left">
+                                <div class="logo-box-style3">
+                                    <a href="index.html">
+                                        <h3 style="font-weight: bolder">NESTOPRO INTERNATIONAL BANK</h3>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-menu-style3-middle">
+                                <div class="main-menu-box">
+                                    <a href="#" class="mobile-nav__toggler">
+                                        <i class="icon-menu"></i>
+                                    </a>
+
+                                    <ul class="main-menu__list">
+                                        <li class=" megamenu">
+                                            <a href="index.html">Home</a>
+                                        </li>
+
+
+                                        <li class="dropdown">
+                                            <a href="#">Personal Banking</a>
+                                            <ul>
+                                                <li><a href="personal/checking.html">Checking</a></li>
+                                                <li><a href="personal/savings.html">Savings, Money & CDS</a></li>
+                                                <li><a href="personal/ira.html">Individual Retirement Account</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#">Corporate Banking</a>
+                                            <ul>
+                                                <li><a href="business/checking.html">Checking</a></li>
+                                                <li><a href="business/savings.html">Savings, Money & CDS</a></li>
+                                                <li><a href="business/ira.html">Business IRA</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#">Wealth Management</a>
+                                            <ul>
+                                                <li><a href="wealth-management/trust-service.html">Trust Service</a></li>
+                                                <li><a href="wealth-management/estate-planning.html">Estate Planning</a></li>
+                                            </ul>
+                                        </li>
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                           <div class="main-menu-style1-right">
+                                <div class="header-btn-one">
+                                    <a href="login.html" target="_blank">
+                                        <span class="icon-home-button"></span>Login
+                                    </a>
+                                    <a class="style2" href="register/new-account.html" target="_blank">
+                                        <span class="icon-payment"></span>Open an Account
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+
+        <div class="stricky-header stricky-header--style3 stricked-menu main-menu">
+            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+        </div><!-- /.stricky-header -->
+
+
+        
+        @yield('content')
+
+        <!--Start footer area -->
+        <footer class="footer-area footer-area--style3">
+
+            <!--Start Footer Top-->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <!--Start single footer widget-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+                            <div class="single-footer-widget single-footer-widget--link-box">
+                                <div class="our-company-info">
+                                    <div class="footer-logo-style1">
+                                        <a href="index.html">
+                                            <h4 class="text-white fw-bolder">NESTOPRO INTERNATIONAL BANK</h4>
+                                        </a>
+                                    </div>
+                                    <div class="bottom-text">
+                                        <p>Our commitment is to empower individuals, businesses, and communities to reach new heights with trust, integrity, and innovation.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single footer widget-->
+
+                        <!--Start single footer widget-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+                            <div class="single-footer-widget single-footer-widget--link-box">
+                                <div class="title">
+                                    <h3>Useful Links</h3>
+                                </div>
+                                <div class="footer-widget-links">
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="about.html">Our Story</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single footer widget-->
+
+                        <!--Start single footer widget-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+                            <div class="single-footer-widget single-footer-widget--link-box">
+                                <div class="title">
+                                    <h3>Services</h3>
+                                </div>
+                                <div class="footer-widget-links">
+                                    <ul>
+                                        <li><a href="personal/checking.html">Personal Account</a></li>
+                                        <li><a href="business/checking.html">Business Account</a></li>
+                                        <li><a href="wealth-management/trust-service.html">Wealth Management</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single footer widget-->
+
+                        <!--Start single footer widget-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 single-widget">
+                            <div class="single-footer-widget single-footer-widget--link-box">
+                                <div class="find-nearest-branch-box-style2">
+                                    <div class="icon">
+                                        <span class="icon-map"></span>
+                                    </div>
+                                    <h3>NESTOPRO INTERNATIONAL BANK</h3>
+                                    <address>
+                                      25 Kingsway Street,<br>
+                                      Canary Wharf, London,<br>
+                                      E14 5HP,<br>
+                                      United Kingdom.<br>
+                                      <abbr title="Phone">Phone:</abbr> +44 20 7946 0123<br>
+                                      <a href="mailto:support@nestopro.com">support@nestopro.com</a>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single footer widget-->
+
+                    </div>
+                </div>
+            </div>
+            <!--End Footer Top-->
+
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="bottom-inner">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">Disclaimer</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Online Security Tips</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+        <!--End footer area-->
+
+
+    </div>
+    <!-- /.page-wrapper -->
+
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler">
+                <i class="fas fa-plus"></i>
+            </span>
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image">
+                    <h4>NESTOPRO INTERNATIONAL BANK</h4>
+
+                </a>
+            </div>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:support@nestopro.com">support@nestopro.com</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label>
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+        <i class="icon-chevron"></i>
+    </a>
+
+
+
+
+
+   <script src="assets/vendors/jquery/jquery-3.6.0.min.js"></script>
+<script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendors/bxslider/jquery.bxslider.min.js"></script>
+<script src="assets/vendors/circleType/jquery.circleType.js"></script>
+<script src="assets/vendors/circleType/jquery.lettering.min.js"></script>
+<script src="assets/vendors/isotope/isotope.js"></script>
+<script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+<script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+<script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="assets/vendors/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="assets/vendors/jquery-ui/jquery-ui.js"></script>
+<script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+<script src="assets/vendors/nice-select/jquery.nice-select.min.js"></script>
+<script src="assets/vendors/odometer/odometer.min.js"></script>
+<script src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/vendors/swiper/swiper.min.js"></script>
+<script src="assets/vendors/vegas/vegas.min.js"></script>
+<script src="assets/vendors/wnumb/wNumb.min.js"></script>
+<script src="assets/vendors/wow/wow.js"></script>
+<script src="assets/vendors/extra-scripts/jquery.paroller.min.js"></script>
+<script src="assets/vendors/language-switcher/jquery.polyglot.language.switcher.js"></script>
+<script src="assets/vendors/aos/aos.js"></script>
+
+<!-- Template js -->
+<script src="assets/js/custom.js"></script>
+
+
+
+</body>
+
+<!-- Mirrored from nestopro.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 11:03:37 GMT -->
+</html>

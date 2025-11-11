@@ -186,3 +186,4 @@ export default function Index({ paymentMethods }: PageProps & { paymentMethods: 
 
 
 
+

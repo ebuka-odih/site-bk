@@ -1,4 +1,4 @@
-@extends('pages.layout.app')
+@extends('pages.layout.app_layout')
 
 @section('content')
 <div id="smooth-content">

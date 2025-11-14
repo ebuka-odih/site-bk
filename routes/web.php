@@ -79,6 +79,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     
     // User Management
     Route::resource('users', UserController::class);
+    Route::get('/users/{user}/impersonate', [UserController::class, 'impersonate'])->name('users.impersonate');
     Route::post('/users/{user}/fund', [UserController::class, 'fund'])->name('users.fund');
     Route::post('/users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
     Route::post('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');

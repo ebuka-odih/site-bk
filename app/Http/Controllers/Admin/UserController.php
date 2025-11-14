@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
@@ -402,6 +403,32 @@ class UserController extends Controller
         $user->lock($request->reason);
 
         return back()->with('success', 'User account locked successfully.');
+    }
+
+    /**
+     * Impersonate a user (login as that user).
+     */
+    public function impersonate(Request $request, User $user)
+    {
+        // Log the impersonation action
+        AuditLog::logEvent('user.impersonated', [
+            'impersonated_user_id' => $user->id,
+            'impersonated_user_email' => $user->email,
+            'admin_id' => auth()->id(),
+            'admin_email' => auth()->user()->email,
+        ], $user);
+
+        // Log out the current admin
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Log in as the target user
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        // Redirect to user dashboard
+        return redirect()->route('dashboard');
     }
 
     protected function ensureWallet(User $user): Wallet

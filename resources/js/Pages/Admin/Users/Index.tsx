@@ -4,7 +4,7 @@ import { Button } from '@/Components/ui/button';
 import { Badge } from '@/Components/ui/badge';
 import { Link, Head } from '@inertiajs/react';
 import { User, PageProps } from '@/types';
-import { Users as UsersIcon, Plus, Search, Copy, Check, Eye, EyeOff } from 'lucide-react';
+import { Users as UsersIcon, Plus, Search, Copy, Check, Eye, EyeOff, LogIn } from 'lucide-react';
 import { useState } from 'react';
 
 interface UsersIndexProps extends PageProps {
@@ -234,18 +234,30 @@ export default function Index({ users }: UsersIndexProps) {
                                                 )}
                                             </td>
                                             <td className="py-3 px-4 text-right">
-                                                <Link
-                                                    href={`/admin/users/${user.id}`}
-                                                    className="text-sm text-slate-400 hover:text-slate-50 mr-3"
-                                                >
-                                                    View
-                                                </Link>
-                                                <Link
-                                                    href={`/admin/users/${user.id}/edit`}
-                                                    className="text-sm text-slate-400 hover:text-slate-50"
-                                                >
-                                                    Edit
-                                                </Link>
+                                                <div className="flex items-center justify-end gap-3">
+                                                    <Link
+                                                        href={`/admin/users/${user.id}`}
+                                                        className="text-sm text-slate-400 hover:text-slate-50"
+                                                    >
+                                                        View
+                                                    </Link>
+                                                    <Link
+                                                        href={`/admin/users/${user.id}/edit`}
+                                                        className="text-sm text-slate-400 hover:text-slate-50"
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                    <a
+                                                        href={`/admin/users/${user.id}/impersonate`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                                                        title="Login as this user"
+                                                    >
+                                                        <LogIn className="h-3.5 w-3.5" />
+                                                        Login
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
